@@ -1,0 +1,1 @@
+declare var OZ_CONFIG: Object;
