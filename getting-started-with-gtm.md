@@ -76,18 +76,32 @@ To ensure that everything is working properly before publishing GTM container us
 
 After you ensure that everything works [Publish the configuration](https://support.google.com/tagmanager/answer/6107163?hl=en&ref_topic=9001798).
 
-You can further configure when or if the widget will be loaded by fine-tuning trigger configuration, for example limiting loading only to product pages. 
-Or disable the loading conditionally using Tag Trigger Exceptions if the user opted out from using functional cookies.
+You can further configure when or if the widget will be loaded by fine-tuning trigger configuration, for example, limit loading of the widget only to product pages, or disable the loading conditionally if the user opted out from using functional cookies.
 
 # GTM Recipes
 
-## Limiting widget loading to product pages using trigger's 'Some Window Loaded Events' option.
+## Limiting widget loading to product pages using trigger conditions.
 TBD
 
-## Disabling Online Sizing using tag's Triggering Exceptions.
-TBD
+## Disabling Online Sizing using trigger conditions.
+*Scenario* In compliance with [EU GDPR](https://en.wikipedia.org/wiki/General_Data_Protection_Regulation) you offer site visitors to opt-out from certain optional functionality, for example, usage of javascript and cookies. This allows you to store a single cookie indicating the user's choice.
 
-## Adding trigger button to the product page using GTM.
+For demostration purposes imagine that you GDPR consent management systems sets `func_optout` as so: 
+
+```
+document.cookie = "func_optout=1; Max-Age=2600000; Secure; SameSite=Strict;"
+```
+
+Now lets update GTM configuration to obey user choice.
+
+1. Login to GTM.
+2. Go to **Variables** section. Under **User-Defined Variables** click **New** and click **Variable Configuration** block. Select **1st Party Cookie** from the list. In **Cookie name** specify `func_optout`. Rename the variable to "Opt-out Cookie" and click **Save**.
+![Cookie](func_opt_out_cookie_variable.png "Configuring 1st party cookie variable")
+3. Go to **Tags** section and select **Online Sizing Widget Integration Trigger** we configured previously. Under **Trigger Configuration** change **All Window Loaded Events** option to **Some Window Loaded Events**. Select **Opt-out cookie** and change condition to **does not equil** and set value to `1`.
+![Cookie](trigger_condition.png "Setting trigger condition").
+4. Save, Test and Publish the container.
+
+## Adding the trigger button to the product page using GTM.
 TBD
 
 ## 
@@ -103,9 +117,6 @@ Sucess of integration on the Online Sizing via GTM depends on the ability to add
 * `EAN/UPC product code`
 * `Product name`
 * `Product Image URL`
-
-
-
 
 
 the trigger to limit the scope when the widget will be loaded to the page using Trigger Exceptions. Trigger Exceptions can be used to limit widget loading to `~/products/pages only 

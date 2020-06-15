@@ -16,7 +16,7 @@
 		let container = document.getElementById(id);
 		if(!container) {
 			container = document.createElement('div');
-			container.id, id;
+			container.id = id;
 			document.body.appendChild(container);
 		}
 		return container;
