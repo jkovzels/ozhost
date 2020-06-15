@@ -8,7 +8,6 @@
 			cta: 'rgb(150, 186, 50)',
 		}
 	};
-	//window.OZ_CONFIG = OZ_CONFIG;
 	
 	//Ensures that container element is present on the page
 	//, otherwise container is created and aded to the end of the page

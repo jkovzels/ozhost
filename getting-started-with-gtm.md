@@ -14,7 +14,7 @@ Script template:
 <script>
 (function OZIntegration() {
     //Global configuration
-    const OZ_CONFIG = {
+    var OZ_CONFIG = {
         settings: {
             apiKey: 'YOUR_API_KEY_HERE',
             container: "oz-sizing-container",
@@ -22,33 +22,30 @@ Script template:
             cta: 'rgb(150, 186, 50)',
         }
     };
-    
-    //Ensures that container element is present on the page, 
-    //otherwise container is created and aded to the end of the page
-    function ensureContainer(id: string){
-        let container = document.getElementById(id);
-        if(!container) {
+    //Ensures that container element is present on the page
+    //, otherwise container is created and aded to the end of the page
+    function ensureContainer(id) {
+        var container = document.getElementById(id);
+        if (!container) {
             container = document.createElement('div');
-            container.id, id;
+            container.id = id;
             document.body.appendChild(container);
         }
         return container;
     }
-
-    function loadScript(key: string, config: Object, src: string) {
+    function loadScript(key, config, src) {
         window['___OnlineSizing'] = key;
         window['___OnlineSizingConfig'] = config;
-        const js = document.createElement('script') as HTMLScriptElement;
+        var js = document.createElement('script');
         js.id = key;
         js.src = src;
         js.async = true;
-
-        const scripts = document.getElementsByTagName('script');
-        const lastScript = scripts[scripts.length - 1];
+        var scripts = document.getElementsByTagName('script');
+        var lastScript = scripts[scripts.length - 1];
         lastScript.parentNode.insertBefore(js, lastScript);
-    };
-
-    (function init(){
+    }
+    ;
+    (function init() {
         ensureContainer(OZ_CONFIG.settings.container);
         loadScript('oz', OZ_CONFIG, 'https://staging-widgets.onlinesizing.bike/loader.js');
         console.log('all good');
@@ -109,15 +106,3 @@ TBD
 
 
 
-## Side notes (draft bits and pieces)
-
-
-Sucess of integration on the Online Sizing via GTM depends on the ability to add "Find my size" button and collect information about the bicycle from the page. Namely:
-
-* `EAN/UPC product code`
-* `Product name`
-* `Product Image URL`
-
-
-the trigger to limit the scope when the widget will be loaded to the page using Trigger Exceptions. Trigger Exceptions can be used to limit widget loading to `~/products/pages only 
-See recipes sections for Example
