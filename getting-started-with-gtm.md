@@ -2,8 +2,8 @@
 
 To complete this guide the following **pre-requisites** are required.
 1. Publishing privilege for GTM container.
-2. Minimal knowledge of Javascript, HTML and CSS.
-3. Access to HTML code of the page. To install the widget you will need to add "Fit the bike" with will open the Online Sizing widget. See [Gettting started](https://support.google.com/tagmanager/answer/6107163?hl=en&ref_topic=9001798) for guidance. If you do not have at access to the code of the page see Recipes section below.
+2. Minimal knowledge of Javascript, HTML, and CSS.
+3. Access to HTML code of the page. To install the widget you will need to add "Fit the bike" with will open the Online Sizing widget. See [Gettting started](https://support.google.com/tagmanager/answer/6107163?hl=en&ref_topic=9001798) for guidance. If you do not have access to the code of the page see Recipes section below.
 
 
 ## Customize integration script
@@ -16,24 +16,13 @@ Script template:
     //Global configuration
     var OZ_CONFIG = {
         settings: {
-            apiKey: 'YOUR_API_KEY_HERE',
+            apiKey: '{{smartfit_apiKey}}',
             primary: 'hsl(187, 74%, 70%)',
             cta: 'rgb(150, 186, 50)',
         }
     };
-    //Ensures that container element is present on the page
-    //, otherwise container is created and aded to the end of the page
-    function ensureContainer(id) {
-		if(!id) { return; }
-        var container = document.getElementById(id);
-        if (!container) {
-            container = document.createElement('div');
-            container.id = id;
-            document.body.appendChild(container);
-        }
-        return container;
-    }
-    function loadScript(key, config, src) {
+    
+    (function init(key, config, src) {
         window['___OnlineSizing'] = key;
         window['___OnlineSizingConfig'] = config;
         var js = document.createElement('script');
@@ -43,19 +32,14 @@ Script template:
         var scripts = document.getElementsByTagName('script');
         var lastScript = scripts[scripts.length - 1];
         lastScript.parentNode.insertBefore(js, lastScript);
-    }
-    ;
-    (function init() {
-        ensureContainer(OZ_CONFIG.settings.container);
-        loadScript('oz', OZ_CONFIG, 'https://staging-widgets.onlinesizing.bike/loader.js');
-        console.log('all good');
-    })();
+    })('oz', OZ_CONFIG, 'https://staging-widgets.onlinesizing.bike/loader.js');
 })();
 </script>
 ```
 ## Replace API key value
 
-In the script above replace `YOUR_API_KEY_HERE` is Global configuration with your API key value. To get API key refer to [Obtain your API Key and whitelist domains](
+In the script above replace `{{smartfit_apiKey}}` in the script above with your API key value. Alternatively, leave the script as-is and create [user-defined constant](https://support.google.com/tagmanager/topic/9125128?hl=en&ref_topic=7683268) named 'smartfit_apiKey' and set it value to your API key. Tag Manager will replace the placeholder with the value of the API key.
+To get the value of API key, refer to [Get your API Key and whitelist domains](
 https://docs.onlinesizing.bike/docs/getting-started/#step-1-obtain-your-api-key-and-whitelist-domains).
 
 
@@ -96,12 +80,9 @@ Now lets update GTM configuration to obey user choice.
 ![Cookie](func_opt_out_cookie_variable.png "Configuring 1st party cookie variable")
 3. Go to **Tags** section and select **Online Sizing Widget Integration Trigger** we configured previously. Under **Trigger Configuration** change **All Window Loaded Events** option to **Some Window Loaded Events**. Select **Opt-out cookie** and change condition to **does not equil** and set value to `1`.
 ![Cookie](trigger_condition.png "Setting trigger condition").
-4. Save, Test and Publish the container.
+4. Save, Test, and Publish the container.
 
-## Adding the trigger button to the product page using GTM.
-TBD
-
-## 
+### Should you have any questions please contact us at [onlinesizing@smartfit.bike](mailto://onlinesizing@smartfit.bike)
 
 
 
