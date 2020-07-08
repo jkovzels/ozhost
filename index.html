@@ -2,29 +2,30 @@
 <html>
 	<head>
 		<script>
-			const OZ_CONFIG = {
-				settings: {
-					apiKey: '$oz_$PkbIniTRbf38LXl82udU0OMoXOGe4VnKu/lH1CxgmNNEESLr.Digm',
-					container: "my-sizing-container", // the ID of your empty target element, which will then contain the generated iframe element
-					primary: 'hsl(187, 74%, 70%)', // colors can be any format accepted by css. Hey, rgb, hsl, …
-					cta: 'rgb(150, 186, 50)',
-					background: 'rgba(0, 0, 0, 0.2)'
-				}
-			};
-		</script>
-		<script>
-			((win, doc, script, key, config, src) => {
-				win['___OnlineSizing'] = key;
-				win['___OnlineSizingConfig'] = config;
-				const js = doc.createElement(script);
-				js.id = key;
-				js.src = src;
-				js.async = true;
 
-				const scripts = doc.getElementsByTagName(script);
-				const lastScript = scripts[scripts.length - 1];
-				lastScript.parentNode.insertBefore(js, lastScript);
-			})(window, document, 'script', 'oz', OZ_CONFIG, 'https://staging-widgets.onlinesizing.bike/loader.js');
+	const OZ_CONFIG = {
+			settings: {
+				apiKey: '$oz_$PkbIniTRbf38LXl82udU0OMoXOGe4VnKu/lH1CxgmNNEESLr.Digm'
+			}
+		};
+	((win, doc, script, key, config, src) => {
+			win["___OnlineSizing"] = key;
+			win["___OnlineSizingConfig"] = config;
+			const js = doc.createElement(script);
+			js.id = key;
+			js.src = src;
+			js.async = true;
+			const scripts = doc.getElementsByTagName(script);
+			const lastScript = scripts[scripts.length - 1];
+			lastScript.parentNode.insertBefore(js, lastScript);
+		})(
+			window,
+			document,
+			"script",
+			"oz",
+			OZ_CONFIG,
+			`https://staging-widgets.onlinesizing.bike/loader.js`
+		);
 		</script>
 	</head>
 
@@ -33,14 +34,11 @@
 			OZ widget integration demo page
 		</h1>
 
-		<button
-			class="oz-trigger"
-			data-oz-code="728-52046"
-			data-oz-name="Scott Gambler 900 Testi test"
-			data-oz-image="https://dfp2hfrf3mn0u.cloudfront.net/274/274656_1586300_png_zoom_3.jpg">
-			Find my size
-		</button>
-		<div id="my-sizing-container"></div>
+	<div class="oz-container" data-oz-widget="launcher" data-oz-code="8053323623809" data-oz-name="Cinelli Veltrix Potenza Road Bike 2020" data-oz-image="https://cdn.bike24.net/i/mb/a2/62/2d/301915-00-d-617909.jpg"></div>
+
+
+
+
 	</body>
 
 </html>
