@@ -3,7 +3,6 @@
     var OZ_CONFIG = {
         settings: {
             apiKey: 'YOUR_API_KEY_HERE',
-            container: "oz-sizing-container",
             primary: 'hsl(187, 74%, 70%)',
             cta: 'rgb(150, 186, 50)',
         }
@@ -11,6 +10,9 @@
     //Ensures that container element is present on the page
     //, otherwise container is created and aded to the end of the page
     function ensureContainer(id) {
+        if (!id) {
+            return;
+        }
         var container = document.getElementById(id);
         if (!container) {
             container = document.createElement('div');

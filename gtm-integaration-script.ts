@@ -1,9 +1,8 @@
 (function OZIntegration() {
 	//Global configuration
-	const OZ_CONFIG = {
+	const OZ_CONFIG: OzConfig = {
 		settings: {
 			apiKey: 'YOUR_API_KEY_HERE',
-			container: "oz-sizing-container", // the ID of your empty target element, which will then contain the generated iframe element
 			primary: 'hsl(187, 74%, 70%)', // colors can be any format accepted by css. Hey, rgb, hsl, …
 			cta: 'rgb(150, 186, 50)',
 		}
@@ -12,6 +11,7 @@
 	//Ensures that container element is present on the page
 	//, otherwise container is created and aded to the end of the page
 	function ensureContainer(id: string){
+		if(!id) {return;}
 		let container = document.getElementById(id);
 		if(!container) {
 			container = document.createElement('div');
