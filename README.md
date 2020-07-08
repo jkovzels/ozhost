@@ -1,4 +1,5 @@
 Computer, enhance!
 
-[simple integaration](index.html)
-[gtm integaration](index-gtm.html)
+[simple integaration](https://jkovzels.github.io/ozhost/index.html)
+
+[gtm integaration](https://jkovzels.github.io/ozhost/index-gtm.html)
